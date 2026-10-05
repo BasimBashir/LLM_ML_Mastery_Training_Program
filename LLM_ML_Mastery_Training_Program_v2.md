@@ -421,14 +421,14 @@ Read first:
 
 Understand:
 
-- [ ] Tensor
-- [ ] device
-- [ ] CPU vs GPU
-- [ ] CUDA
-- [ ] tensor dtype
-- [ ] FP32
-- [ ] FP16
-- [ ] BF16
+- [X] Tensor
+- [X] device
+- [X] CPU vs GPU
+- [X] CUDA
+- [X] tensor dtype
+- [X] FP32
+- [X] FP16
+- [X] BF16
 
 ### IMPLEMENT
 
@@ -444,41 +444,41 @@ Create:
 
 Implement:
 
-- [ ] Check PyTorch version.
-- [ ] Check CUDA availability.
-- [ ] Print GPU name.
-- [ ] Print VRAM.
-- [ ] Allocate tensor on GPU.
-- [ ] Run matrix multiplication.
-- [ ] Measure execution time.
+- [X] Check PyTorch version.
+- [X] Check CUDA availability.
+- [X] Print GPU name.
+- [X] Print VRAM.
+- [X] Allocate tensor on GPU.
+- [X] Run matrix multiplication.
+- [X] Measure execution time.
 
 ### EXPERIMENT
 
-- [ ] Compare CPU vs GPU matrix multiplication.
-- [ ] Compare FP32 vs FP16.
-- [ ] Compare different matrix sizes.
+- [X] Compare CPU vs GPU matrix multiplication.
+- [X] Compare FP32 vs FP16.
+- [X] Compare different matrix sizes.
 
 ### DOCUMENT
 
-- [ ] Record exact hardware.
-- [ ] Record software versions.
-- [ ] Record benchmark results.
-- [ ] Explain why GPU wins.
+- [X] Record exact hardware.
+- [X] Record software versions.
+- [X] Record benchmark results.
+- [X] Explain why GPU wins.
 
 ### PUBLISH
 
-- [ ] Commit code.
-- [ ] Write `LEARNING_LOG.md`.
-- [ ] Push to GitHub.
+- [X] Commit code.
+- [X] Write `LEARNING_LOG.md`.
+- [X] Push to GitHub.
 
 ### COMPLETE
 
-- [ ] Study
-- [ ] Implement
-- [ ] Experiment
-- [ ] Document
-- [ ] Publish
-- [ ] Complete
+- [X] Study
+- [X] Implement
+- [X] Experiment
+- [X] Document
+- [X] Publish
+- [X] Complete
 
 ---
 
