@@ -496,15 +496,15 @@ Read:
 
 Understand:
 
-- [ ] Dataset
-- [ ] `__len__`
-- [ ] `__getitem__`
-- [ ] DataLoader
-- [ ] batching
-- [ ] shuffling
-- [ ] workers
-- [ ] collate function
-- [ ] sampler
+- [X] Dataset
+- [X] `__len__`
+- [X] `__getitem__`
+- [X] DataLoader
+- [X] batching
+- [X] shuffling
+- [X] workers
+- [X] collate function
+- [X] sampler
 
 ## IMPLEMENT
 
@@ -520,21 +520,21 @@ Create:
 
 Build:
 
-- [ ] Custom Dataset.
-- [ ] DataLoader.
-- [ ] Batch inspection.
-- [ ] Custom collate function.
-- [ ] Configurable batch size.
+- [X] Custom Dataset.
+- [X] DataLoader.
+- [X] Batch inspection.
+- [X] Custom collate function.
+- [X] Configurable batch size.
 
 ## EXPERIMENT
 
 Test:
 
-- [ ] batch size 1
-- [ ] batch size 8
-- [ ] batch size 32
-- [ ] different `num_workers`
-- [ ] shuffle on/off
+- [X] batch size 1
+- [X] batch size 8
+- [X] batch size 32
+- [X] different `num_workers`
+- [X] shuffle on/off
 
 Record throughput.
 
@@ -548,7 +548,7 @@ Answer:
 4. What is a collate function?
 5. When can more workers make things worse?
 
-- [ ] Write answers in `LEARNING_LOG.md`.
+- [X] Write answers in `LEARNING_LOG.md`.
 
 ---
 

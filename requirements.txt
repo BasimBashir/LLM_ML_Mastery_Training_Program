@@ -4,3 +4,7 @@ torch
 torchvision
 
 # Other dependencies
+matplotlib
+pandas
+torchtext
+datasets
