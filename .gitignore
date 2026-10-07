@@ -1,2 +1,3 @@
 .venv
 .mypy_cache
+00-environment/day02_dataloader/__pycache__/*

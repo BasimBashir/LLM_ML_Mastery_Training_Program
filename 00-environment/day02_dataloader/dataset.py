@@ -1,7 +1,6 @@
 from itertools import product
 from time import perf_counter
 
-import torch
 from datasets import load_dataset as hf_load_dataset
 from torch.utils.data import DataLoader, Dataset
 

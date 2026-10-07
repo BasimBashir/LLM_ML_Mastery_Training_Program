@@ -563,33 +563,33 @@ Read:
 
 Learn:
 
-- [ ] forward pass
-- [ ] loss
-- [ ] backward pass
-- [ ] gradients
-- [ ] optimizer
-- [ ] `zero_grad`
-- [ ] `step`
+- [X] forward pass
+- [X] loss
+- [X] backward pass
+- [X] gradients
+- [X] optimizer
+- [X] `zero_grad`
+- [X] `step`
 
 ## IMPLEMENT
 
-- [ ] Write a training loop without Trainer.
-- [ ] Add validation.
-- [ ] Add checkpoint saving.
-- [ ] Add checkpoint loading.
+- [X] Write a training loop without Trainer.
+- [X] Add validation.
+- [X] Add checkpoint saving.
+- [X] Add checkpoint loading.
 
 ## EXPERIMENT
 
-- [ ] Train an MLP.
-- [ ] Save checkpoint.
-- [ ] Kill process.
-- [ ] Resume training.
-- [ ] Verify optimizer state also resumes.
+- [X] Train an MLP.
+- [X] Save checkpoint.
+- [X] Kill process.
+- [X] Resume training.
+- [X] Verify optimizer state also resumes.
 
 ## DOCUMENT
 
-- [ ] Explain the lifecycle of one batch.
-- [ ] Document checkpoint contents.
+- [X] Explain the lifecycle of one batch.
+- [X] Document checkpoint contents.
 
 ---
 
