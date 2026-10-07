@@ -65,7 +65,98 @@ Checkpoint saved to 00-environment\day02_dataloader\checkpoints\ag_news_mlp.pt
 1. [docs.pytorch.org/tutorials/beginner/basics/data_tutorial.html](https://docs.pytorch.org/tutorials/beginner/basics/data_tutorial.html)<resource></resource>
 2. [docs.pytorch.org/docs/2.14/data.html](https://docs.pytorch.org/docs/2.14/data.html)<resource></resource>
 3. [chatgpt.com/share/6ac504ff-7abc-83ee-a379-6e256be7cd50](https://chatgpt.com/share/6ac504ff-7abc-83ee-a379-6e256be7cd50)
-4. [docs.pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html](https://docs.pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html)<paper></paper>
+4. [docs.pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html](https://docs.pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html)
+
+## Day 5 — AdamW, learning-rate scheduling and gradient accumulation
+
+### Concepts
+
+- **Adam** adapts each parameter's step using estimates of the first and second
+  moments of its gradients.
+- **AdamW** decouples weight decay from Adam's gradient-based update. The
+  training script uses AdamW with configurable weight decay.
+- The **learning rate** scales each optimizer update. Warmup increases it over
+  the first configured fraction of optimizer steps; cosine decay then smoothly
+  reduces it toward zero.
+- **Gradient accumulation** adds gradients from several smaller forward/
+  backward passes and applies one optimizer update at their boundary. Gradients
+  are averaged by the number of samples in the group, including a short final
+  group.
+
+### Effective-batch experiment
+
+Run `python 00-environment\day02_dataloader\benchmark.py` to train and compare
+the two requested configurations with the same seed, AdamW settings, and
+temporary checkpoints. The benchmark removes its temporary checkpoints when
+both runs finish.
+
+Both configurations have nominal effective batch size 8:
+
+```text
+8 examples/update = 8 x 1
+8 examples/update = 2 x 4
+```
+
+For the same examples and fixed model parameters, averaging the four
+batch-of-2 gradients gives the same mean gradient as a batch of 8, up to
+floating-point summation differences. The two runs therefore make roughly the
+same number of optimizer updates per epoch when the dataset size is divisible
+by 8. They are not universally identical: stochastic/batch-dependent layers,
+different example groupings, and a final incomplete group can change results.
+This MLP has no BatchNorm or dropout, and the loop correctly normalizes a
+partial final group by its actual sample count.
+
+### Checkpoint/resume note
+
+Checkpoints now include AdamW and scheduler state. The batch size,
+accumulation count, warmup ratio, weight decay, and total schedule length must
+match when resuming so that optimizer updates and the cosine schedule remain
+consistent.
+
+## Day 6 — Mixed precision
+
+### Concepts
+
+- **FP32** is the default full-precision mode and reference for comparing
+  stability and validation loss.
+- **FP16** has a smaller exponent range than FP32 and BF16, so values can
+  underflow or overflow. CUDA FP16 runs under autocast with `GradScaler`: the
+  loss is scaled before backpropagation, and gradients are unscaled before
+  updates. The scaler skips an optimizer/scheduler update on non-finite
+  gradients. FP16 is CUDA-only in this script.
+- **BF16** has an exponent range similar to FP32 but fewer significand bits;
+  it can represent a wide range of values with lower precision per value and
+  generally does not need loss scaling. CUDA BF16 is rejected on unsupported
+  devices.
+- **Autocast** selects operation dtypes automatically while model parameters
+  and optimizer state remain FP32. This improves compatibility and numerical
+  stability compared with converting the entire model to half precision.
+
+### Experiment
+
+Run `python 00-environment\day02_dataloader\benchmark_amp.py` on a CUDA machine
+to run the same seeded experiment in FP32, FP16, and BF16. It reports validation
+loss, training throughput (samples/second), peak allocated and reserved VRAM,
+and writes those measurements to
+`00-environment\day02_dataloader\day6_amp_results.csv`. FP16 requires CUDA, so
+the full three-mode comparison should be run on a CUDA GPU.
+
+Measured on the RTX 3090 (`torch 2.14.1+cu126`), with batch size 64, one epoch,
+and `--max-features 5000`:
+
+| Mode | Peak VRAM allocated (MB) | Peak VRAM reserved (MB) | Speed (samples/s) | Validation loss |
+| ---- | -----------------------: | ----------------------: | ----------------: | --------------: |
+| FP32 | 44.06 | 62 | 2302.41 | 0.260619 |
+| FP16 | 44.06 | 64 | 2124.27 | 0.260584 |
+| BF16 | 44.06 | 64 | 2302.25 | 0.260779 |
+
+On this small MLP and dense bag-of-words input, mixed precision did not reduce
+measured peak allocated VRAM or improve throughput; FP16 was slower in this
+single run. The validation losses were close. FP16 skipped five optimizer
+updates after `GradScaler` detected non-finite gradients, demonstrating why
+loss scaling and monitoring update counts matter. These measurements are
+workload- and hardware-dependent, not a general mixed-precision performance
+claim.
 
 ## Concepts I learned
 

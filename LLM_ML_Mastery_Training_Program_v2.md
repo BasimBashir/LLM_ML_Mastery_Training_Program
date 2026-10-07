@@ -602,19 +602,19 @@ Learn:
 
 Learn:
 
-- [ ] Adam
-- [ ] AdamW
-- [ ] learning rate
-- [ ] warmup
-- [ ] cosine decay
-- [ ] gradient accumulation
+- [X] Adam
+- [X] AdamW
+- [X] learning rate
+- [X] warmup
+- [X] cosine decay
+- [X] gradient accumulation
 
 ## IMPLEMENT
 
-- [ ] AdamW.
-- [ ] warmup.
-- [ ] cosine scheduler.
-- [ ] gradient accumulation.
+- [X] AdamW.
+- [X] warmup.
+- [X] cosine scheduler.
+- [X] gradient accumulation.
 
 ## EXPERIMENT
 
@@ -643,18 +643,18 @@ Explain why the effective batch size is approximately equivalent.
 
 Learn:
 
-- [ ] FP32
-- [ ] FP16
-- [ ] BF16
-- [ ] autocast
-- [ ] GradScaler
-- [ ] numerical stability
+- [X] FP32
+- [X] FP16
+- [X] BF16
+- [X] autocast
+- [X] GradScaler
+- [X] numerical stability
 
 ## IMPLEMENT
 
-- [ ] FP32 training.
-- [ ] mixed-precision training.
-- [ ] record VRAM and speed.
+- [X] FP32 training.
+- [X] mixed-precision training.
+- [X] record VRAM and speed.
 
 ## EXPERIMENT
 
