@@ -2,14 +2,18 @@ import argparse
 import json
 import math
 import re  # Split article text into word-like tokens.
+import sys
 from collections import Counter  # Count how often each word appears.
 from functools import partial  # Pre-fill arguments for reusable callbacks.
 from pathlib import Path  # Build file paths safely across operating systems.
 from time import perf_counter
 
 import torch  # Tensor operations, device selection, and checkpoint I/O.
-from dataset import load_dataset  # Load AG News samples as text and labels.
 from torch import nn  # Neural-network layers and loss function.
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from day02_dataloader.dataset import load_dataset  # Load AG News samples as text and labels.
 
 TOKEN_PATTERN = re.compile(r"\b\w+\b")
 NUM_CLASSES = 4  # AG News has four topic labels.
@@ -260,7 +264,7 @@ def parse_args():
     parser.add_argument(
         "--checkpoint",
         type=Path,
-        default=Path("00-environment/day02_dataloader/checkpoints/ag_news_mlp.pt"),
+        default=Path(__file__).resolve().parent / "checkpoints" / "ag_news_mlp.pt",
     )
     parser.add_argument("--resume", action="store_true", help="Resume from --checkpoint.")
     args = parser.parse_args()  # Read the options supplied when running the script.

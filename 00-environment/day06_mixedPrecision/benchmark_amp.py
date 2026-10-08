@@ -33,7 +33,7 @@ def main():
     if args.max_features < 2:
         parser.error("--max-features must be at least 2.")
 
-    train_script = Path(__file__).with_name("train.py")
+    train_script = Path(__file__).resolve().parents[1] / "day04_TrainingLoop" / "train.py"
     results = []
     with tempfile.TemporaryDirectory(prefix="day6_amp_") as temp_dir:
         for precision in ("fp32", "fp16", "bf16"):
@@ -59,7 +59,7 @@ def main():
                 str(checkpoint),
             ]
             print(f"\nRunning {precision.upper()}...")
-            result = subprocess.run(command, text=True, capture_output=True)
+            result = subprocess.run(command, check=False, text=True, capture_output=True)
             if result.returncode:
                 print(result.stdout, end="")
                 print(result.stderr, end="", file=sys.stderr)

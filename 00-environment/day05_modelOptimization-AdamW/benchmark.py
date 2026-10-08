@@ -56,7 +56,7 @@ def main():
     if args.max_features < 2:
         parser.error("--max-features must be at least 2.")
 
-    train_script = Path(__file__).with_name("train.py")
+    train_script = Path(__file__).resolve().parents[1] / "day04_TrainingLoop" / "train.py"
     with tempfile.TemporaryDirectory(prefix="day05_batch_comparison_") as temp_dir:
         checkpoint_dir = Path(temp_dir)
         batch8_time = run_experiment(

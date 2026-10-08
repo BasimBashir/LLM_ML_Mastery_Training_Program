@@ -513,8 +513,6 @@ Create:
 ```text
 00-environment/day02_dataloader/
 ├── dataset.py
-├── train.py
-├── benchmark.py
 └── LEARNING_LOG.md
 ```
 
@@ -525,6 +523,7 @@ Build:
 - [X] Batch inspection.
 - [X] Custom collate function.
 - [X] Configurable batch size.
+- [X] Benchmark batch size, worker count, and shuffle settings.
 
 ## EXPERIMENT
 
@@ -591,6 +590,14 @@ Learn:
 - [X] Explain the lifecycle of one batch.
 - [X] Document checkpoint contents.
 
+Keep the training implementation and its checkpoints in:
+
+```text
+00-environment/day04_TrainingLoop/
+├── train.py
+└── checkpoints/
+```
+
 ---
 
 # Day 5 — AdamW, LR scheduling and gradient accumulation
@@ -632,6 +639,12 @@ gradient_accumulation=4
 
 Explain why the effective batch size is approximately equivalent.
 
+Keep the comparison script in:
+
+```text
+00-environment/day05_modelOptimization-AdamW/benchmark.py
+```
+
 ---
 
 # Day 6 — Mixed precision
@@ -665,6 +678,14 @@ Compare:
 | FP32 |      |       |      |
 | FP16 |      |       |      |
 | BF16 |      |       |      |
+
+Keep the comparison script and results in:
+
+```text
+00-environment/day06_mixedPrecision/
+├── benchmark_amp.py
+└── day6_amp_results.csv
+```
 
 ---
 
