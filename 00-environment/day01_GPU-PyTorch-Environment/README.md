@@ -29,4 +29,5 @@ FP16 processing time on GPU: 0.004662 seconds
 But always note that without warming up the gpu FP32 will use less processing time because the GPU asynchronously do the calculation so always warm up a gpu first before doing fp16 or lower calculations using `torch.cuda.synchronize()` and a dummy dot product for warming up.
 
 
-Watch scripts for details: '00-environment\system_check.py' and '00-environment\benchmark_gpu.py' and my learning log to see the details: '00-environment\LEARNING_LOG.md'.
+Watch `system_check.py` and `benchmark_gpu.py` for implementation details, and
+see `LEARNING_LOG.md` for the recorded environment and experiment notes.

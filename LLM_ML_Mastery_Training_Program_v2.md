@@ -435,7 +435,7 @@ Understand:
 Create:
 
 ```text
-00-environment/
+00-environment/day01_GPU-PyTorch-Environment/
 ├── README.md
 ├── system_check.py
 ├── benchmark_gpu.py
