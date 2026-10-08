@@ -691,12 +691,12 @@ Keep the comparison script and results in:
 
 # Day 7 — Week 1 review
 
-- [ ] Rebuild the training loop from memory.
-- [ ] Explain every tensor shape.
-- [ ] Review all failed experiments.
-- [ ] Write `weekly/2026-W41.md`.
-- [ ] Push GitHub changes.
-- [ ] Create your first public progress post only if the milestone is substantial.
+- [X] Rebuild the training loop from memory.
+- [X] Explain every tensor shape.
+- [X] Review all failed experiments.
+- [X] Write `weekly/2026-W1.md`.
+- [X] Push GitHub changes.
+- [X] Create your first public progress post only if the milestone is substantial.
 
 ---
 
